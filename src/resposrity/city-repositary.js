@@ -10,6 +10,7 @@ class CreateRepo{
         }
         catch(error)
         {
+            console.log("somthing went wrong");
             throw {error};
         }
     }
@@ -22,6 +23,7 @@ class CreateRepo{
                 id:cityid
             }
         });
+        return true;
             
         }
         catch(error)
@@ -29,5 +31,36 @@ class CreateRepo{
             throw {error};
         }
     }
+    async getcity(cityid)   
+{
+        try
+        {
+            const city=await City.findByPk(cityid);
+            return city;
+        }
+        catch(error)
+        {
+            console.log("somthing went wrong");
+            throw {error};
+        }
+    }
+    async updatecity(cityid,name)
+    {
+        try
+        {
+            const city=await City.update({name},{
+                where:{
+                    id:cityid
+                }
+            });
+            return city;
+        }
+        catch(error)
+        {
+            console.log("somthing went wrong");
+            throw {error};
+        }
+    }
+
 }
 module.exports=CreateRepo;
