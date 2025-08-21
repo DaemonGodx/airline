@@ -2,7 +2,7 @@ const {CityRepository} = require('../resposrity/index');
 
 class CityService {
     constructor() {
-        this.CityRepository = CityRepository;
+        this.CityRepository =new CityRepository;
     }
     async createCity({name}) {
         try {
@@ -40,6 +40,15 @@ class CityService {
             return city;
         } catch (error) {
             console.log("Something went wrong in updating city");
+            throw {error};
+        }
+    }
+    async getAllCities(filter) {
+        try {
+            const cities = await this.CityRepository.getAllCities({name: filter.name});
+            return cities;
+        } catch (error) {
+            console.log("Something went wrong in fetching all cities");
             throw {error};
         }
     }
